@@ -1,12 +1,43 @@
-# CVE-2025-MIST-REDIRECT-XSS  
-## Open Redirect Leading to XSS and Malicious Site Redirects
+# Open Redirect Leading to XSS and Malicious Site Redirects
+
+<table>
+  <tr>
+    <td width="150" rowspan="2">
+      <a href="https://github.com/mistio/mist-ce" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/1569127?s=200&v=4" alt="Summer Pearl Logo" width="120"/>
+      </a>
+    </td>
+    <td>
+      <h1>Mist Community Edition</h1>
+      <h3> An Open-Source Multicloud Management Platform</h3>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td>
+            🔗 <a href="https://github.com/mistio/mist-ce" target="_blank">Mist Github Repository</span></a>
+          </td>
+          <td style="padding-left: 15px;">
+            🚀 <a href="https://github.com/mistio/mist-ce/releases/tag/v4.7.2" target="_blank"> Patched Version (v4.7.2) </span></a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
 
 ## 📜 Description
-**Mist Community Edition (CE) v4.7.1** contains an **Open Redirect** vulnerability within its authentication system, which can be exploited to execute **Cross-Site Scripting (XSS)** attacks or **redirect** users to arbitrary sites. This flaw exists in the `return_to` parameter, responsible for controlling post-login redirection. Attackers can craft malicious login URLs that either redirect users to phishing sites to steal credentials or inject malicious JavaScript that runs within the user's browser context, leading to session hijacking or information theft.
+Mist Community Edition (CE) versions prior to 4.7.2 fail to properly validate the "return_to" parameter in the authentication system, creating a combined open redirect and reflected cross-site scripting (XSS) vulnerability. An attacker can craft malicious login URLs that, when clicked by a victim, either redirect to arbitrary external domains or execute attacker-controlled JavaScript in the context of the Mist CE application. This vulnerability requires user interaction but can lead to credential phishing, session hijacking, or other client-side attacks depending on the payload delivered through the crafted URL.
 
-## 📌 Affected Version
-- Mist Community Edition (CE) v4.7.1
-- Other versions prior to v4.7.1 may also be affected
+## 🔍 Affected Versions
+
+| Status       | Version         |
+|--------------|-----------------|
+| 🔴 Vulnerable |  ≤ `4.7.1`      |
+| 🟢  Fixed     |  &nbsp;&nbsp;`4.7.2`      |   
 
 ## ⚠️ Disclaimer
 This project is intended for **educational and ethical research purposes only**. Unauthorized testing on systems without explicit permission is illegal. Use responsibly and only on systems you own or have permission to test.
@@ -53,8 +84,11 @@ Upon authentication, this payload triggers an alert displaying the victim’s se
 </a>
 
 ## 🧑‍💻 Discovery
-The **CVE-2025-XXXX** vulnerability was discovered by **Alex Perrakis (Stolichnayer)**.
 
-## 🔗 **References:**
+This vulnerability was discovered by **Alex Perrakis** (Stolichnayer).
+
+## 🔗 References:
 - [Mist CE Github Repository](https://github.com/mistio/mist-ce)
+- [Patched Version (v4.7.2)](https://github.com/mistio/mist-ce/releases/tag/v4.7.2)
+- [Fix Commit](https://github.com/mistio/mist.api/commit/db10ecb62ac832c1ed4924556d167efb9bc07fad)
 
